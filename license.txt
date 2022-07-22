@@ -1,0 +1,7 @@
+<#if licenseFirst??>
+${licenseFirst}
+</#if>
+${licensePrefix}Copyright (C)  2018 - 2022  by Daniele Zelante  <zeldan@zetasys.net>
+<#if licenseLast??>
+${licenseLast}
+</#if>

@@ -1,0 +1,92 @@
+
+plugins {
+    id 'java'
+    id 'maven-publish'
+    id 'com.github.johnrengelman.shadow' version '7.1.2'
+    id 'com.github.ben-manes.versions' version '0.42.0'
+}
+
+
+dependencies {
+    implementation 'commons-codec:commons-codec:1.15'
+    implementation 'javax.money:money-api:1.1'
+    implementation 'org.apache.commons:commons-lang3:3.12.0'
+    implementation 'org.apache.commons:commons-math3:3.6.1'
+    implementation 'org.apache.poi:poi:5.2.2'
+    implementation 'org.apache.poi:poi-ooxml:5.2.2'
+    implementation 'org.javamoney.moneta:moneta-core:1.4.2'
+
+    testImplementation 'junit:junit:4.13.2'
+}
+
+
+def getRevision() {
+    def a = "git -C ${rootProject.projectDir} describe --tags --long --exclude *-RELEASE".execute().text.trim()
+    if (a == '')
+        return 'devel';
+        
+    def b = "git -C ${rootProject.projectDir} branch --show-current".execute().text.trim()
+    if (b == '')
+        return 'devel';
+    
+    if (b == 'master')
+        return a;
+        
+    def z = a.replaceFirst(Pattern.compile('-g.*$'),'')
+    def h = a.replaceFirst(Pattern.compile('^.*-g'),'')
+    return "$z-$b-g$h"
+    
+}
+
+def getBranch() {
+    def x = "git -C ${rootProject.projectDir} branch --show-current".execute().text.trim()
+    return x == '' ? 'master' : x
+}
+
+
+def getTimestamp() {
+    return new Date().format('yyyy-MM-dd HH:mm:ss')
+}
+
+
+def revision = getRevision()
+def branch = getBranch()
+def timestamp = getTimestamp()
+group = 'net.zetasys.zava'
+
+repositories {
+   mavenLocal()
+   mavenCentral()
+}
+
+version = revision
+description = 'zava'
+
+
+processResources {
+    filesMatching('**/*build.properties') {
+        expand(
+            'z_timestamp': timestamp,
+            'z_scmversion': revision,
+            'z_scmbranch': branch,
+        )
+    }
+}
+
+compileJava {
+    sourceCompatibility = '17'
+    targetCompatibility = '17'
+}
+
+apply plugin: 'java'
+apply plugin: 'maven-publish'
+apply plugin: 'com.github.johnrengelman.shadow'
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            from(components.java)
+        }
+    }
+}
+

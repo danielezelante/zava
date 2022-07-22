@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+fatal()
+{
+	echo "$1"
+	exit 1
+}
+
+MYDIR=$(realpath $(dirname "$0"))
+cd "$MYDIR"
+
+if [[ -z "$1" ]] ; then
+	cat 'basetag'
+else
+	echo "$1" > 'basetag'
+	git commit -a -m "newver $1" || fatal 'git commit failed'
+	git tag "$1" || fatal 'git tag failed'
+	git push origin "$1" || fatal 'git push failed'
+fi
+#.
+
