@@ -73,14 +73,12 @@ processResources {
     }
 }
 
-//compileJava {
-//    sourceCompatibility = '17'
-//    targetCompatibility = '17'
-//}
+compileJava {
+    sourceCompatibility = '17'
+    targetCompatibility = '17'
+}
 
-apply plugin: 'java'
-apply plugin: 'maven-publish'
-apply plugin: 'com.github.johnrengelman.shadow'
+
 
 publishing {
     publications {
