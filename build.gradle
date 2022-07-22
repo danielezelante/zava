@@ -54,7 +54,7 @@ def getTimestamp() {
 def revision = getRevision()
 def branch = getBranch()
 def timestamp = getTimestamp()
-group = 'net.zetasys.zava'
+group = 'net.zetasys'
 
 repositories {
    mavenLocal()
