@@ -81,11 +81,11 @@ compileJava {
 
 
 publishing {
-    //publications {
-    //    maven(MavenPublication) {
-    //        from(components.java)
-    //    }
-    //}
+    publications {
+        myLibrary(MavenPublication) {
+            from(components.java)
+        }
+    }
     
     
     repositories {
