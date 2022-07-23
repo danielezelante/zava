@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 VERSION=$(<"./basetag")
-A=$(git describe --tags --long --exclude 'v*')
+A=$(git describe --tags --long --exclude 'v*' | sed -r 's/-g/+g/')
 [[ -z "$A" ]] && exit 1
 B=$(git branch --show-current)
 [[ -z "$B" ]] && exit 1
 if [[ "$B" != 'main' ]] ; then
-    Z=$(echo "$A" | sed -r 's/-g.*$//')
-    H=$(echo "$A" | sed -r 's/^.*-g//')
+    Z=$(echo "$A" | sed -r 's/+g.*$//')
+    H=$(echo "$A" | sed -r 's/^.*+g//')
     if [[ "$Z" == "$VERSION" ]] ; then
-        echo "$Z-$B-g$H"
+        echo "$Z-$B+g$H"
         exit 0
     fi
     echo "! $VERSION ~ $Z"    
