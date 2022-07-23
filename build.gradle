@@ -33,7 +33,7 @@ def getRevision() {
     if (v != '') {
         def n = a.replaceFirst(Pattern.compile('.*-'), '')
         if (n == 0)
-            return a
+            return v
                 .replaceFirst(Pattern.compile('-.*'), '')
                 .replaceFirst(Pattern.compile('^v'), '')
     }
