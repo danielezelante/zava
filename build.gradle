@@ -24,7 +24,7 @@ dependencies {
 
 def getBranch() {
     def x = "git branch --show-current".execute().text.trim()
-    return x == '' ? 'master' : x
+    return x == '' ? 'main' : x
 }
 
 
@@ -37,7 +37,7 @@ def getRevision() {
     if (b == '')
         return 'devel';
     
-    if (b == 'master')
+    if (b == 'main')
         return a;
         
     def z = a.replaceFirst(Pattern.compile('-g.*$'),'')

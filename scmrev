@@ -5,7 +5,7 @@ A=$(git describe --tags --long --exclude 'v*')
 [[ -z "$A" ]] && exit 1
 B=$(git branch --show-current)
 [[ -z "$B" ]] && exit 1
-if [[ "$B" != 'master' ]] ; then
+if [[ "$B" != 'main' ]] ; then
     Z=$(echo "$A" | sed -r 's/-g.*$//')
     H=$(echo "$A" | sed -r 's/^.*-g//')
     if [[ "$Z" == "$VERSION" ]] ; then
