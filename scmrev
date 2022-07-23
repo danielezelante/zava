@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-set -x
 VERSION=$(<"./basetag")
 A=$(git describe --tags --long --exclude 'v*')
 [[ -z "$A" ]] && exit 1
@@ -24,3 +23,4 @@ fi
 
 echo "! $VERSION ~ $Q"    
 exit 1
+#.
