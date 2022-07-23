@@ -7,11 +7,11 @@ fatal()
 }
 
 if [[ -z "$1" ]] ; then
-	git describe --tags --long --match 'b*' | sed -s 's/-.*//'
+    git describe --tags --long --match 'b*' | sed -s 's/-.*//'
 else
-	git commit -a -m "wipver $1" || fatal 'git commit failed'
-	git tag "b$1" || fatal 'git tag failed'
-	git push origin "b$1" || fatal 'git push failed'
+    [[ -n $(git status --porcelain) ]] && fatal "Cannot release with uncommited changes."
+    git tag "b$1" || fatal 'git tag failed'
+    git push origin "b$1" || fatal 'git push failed'
 fi
 #.
 
