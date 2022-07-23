@@ -29,20 +29,21 @@ def getBranch() {
 
 
 def getRevision() {
-    def a = "git describe --tags --long --exclude *-RELEASE".execute().text.trim()
-    if (a == '')
-        return 'devel';
-        
-    def b = getBranch()
-    if (b == '')
-        return 'devel';
-    
-    if (b == 'main')
-        return a;
-        
-    def z = a.replaceFirst(Pattern.compile('-g.*$'),'')
-    def h = a.replaceFirst(Pattern.compile('^.*-g'),'')
-    return "$z-$b-g$h"
+    def v = "git describe --tags -long --match v*".execute().text.trim().replaceFirst(Pattern.compile('-g.*'), '')
+    if (v != '') {
+        def n = a.replaceFirst(Pattern.compile('.*-'), '')
+        if (n == 0)
+            return a
+                .replaceFirst(Pattern.compile('-.*'), '')
+                .replaceFirst(Pattern.compile('^v'), '')
+    }
+
+    def a = "git describe --tags --long --exclude v*".execute().text.trim().replaceFirst(
+        Pattern.compile('-g'), '+g')
+    if (a != '')
+        return a
+
+    return 'devel'
 }
 
 
