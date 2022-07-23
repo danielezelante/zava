@@ -2,13 +2,9 @@
 useful(less) java classes by zetasys.net
 
 self-hosted development sequence:
-- `./newver X.Y.Z`
+- `./wipver` (optional to get actual wip version)
 - modify
-- `git commit`
-- `git push` optional
-- `./gradlew build`
-- test, if fail go back to *modify*
-- `git tag vX.Y.Z` (with the same *X.Y.Z*)
-- `git push`
-- `git push --tags`
-- create release on githb web for the tag: *vX.Y.Z*
+- `./gradlew build` (optional to pre-check) if fail go back to *modify*
+- `./wipver X.Y.Z` (optional semantic version change depending on what was modified)
+- `release`
+- create release on github web for the existing tag: *vX.Y.Z*
