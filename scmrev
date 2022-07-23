@@ -9,7 +9,7 @@ if [[ -n "$A" ]] ; then
     fi
 fi
 
-A=$(git describe --tags --long --match 'b*' | sed -r 's/-g/+g/')
+A=$(git describe --tags --long --match 'b*' | sed -r 's/-g/+g/;s/^b//')
 if [[ -n "$A" ]] ; then
     echo "$A"
     exit 0
