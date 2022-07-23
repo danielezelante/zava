@@ -29,7 +29,8 @@ def getBranch() {
 
 
 def getRevision() {
-    def v = "git describe --tags --long --match v*".execute().text.trim().replaceFirst(Pattern.compile('-g.*'), '')
+    def v = "git describe --tags --long --match v*".execute().text.trim()
+        .replaceFirst(Pattern.compile('-g.*'), '')
     if (v != '') {
         def n = v.replaceFirst(Pattern.compile('.*-'), '')
         if (n == '0')
@@ -38,8 +39,10 @@ def getRevision() {
                 .replaceFirst(Pattern.compile('^v'), '')
     }
 
-    def a = "git describe --tags --long --match b*".execute().text.trim().replaceFirst(
-        Pattern.compile('-g'), '+g')
+    def a = "git describe --tags --long --match b*".execute().text.trim()
+        .replaceFirst(Pattern.compile('-g'), '+g')
+        .replaceFirst(Pattern.compile('^b'), '')
+
     if (a != '')
         return a
 
