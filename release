@@ -6,10 +6,10 @@ fatal()
         exit 1
 }
 
-[[ -n $(git status --porcelain) ]] && fatal "Cannot release with uncommited changes."
+[[ -n $(git status --porcelain) ]] && fatal 'you should commmit before'
 
-git push || fatal "push failed"
+git push || fatal 'push failed'
 A=$(./scmrev | sed -r 's/-.*//')
-git tag "v$A" || fatal "tag failed"
-git push --tags || fatal "push tags failed"
+git tag "v$A" || fatal 'tag failed'
+git push origin "refs/tags/v$A" || fatal 'push tags failed'
 #.
