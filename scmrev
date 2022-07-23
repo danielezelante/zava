@@ -9,7 +9,6 @@ if [[ -n "$A" ]] ; then
     fi
 fi
 
-VERSION=$(<"./basetag")
 A=$(git describe --tags --long --exclude 'v*' | sed -r 's/-g/+g/')
 if [[ -n "$A" ]] ; then
     echo "$A"
