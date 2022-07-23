@@ -38,7 +38,7 @@ def getRevision() {
                 .replaceFirst(Pattern.compile('^v'), '')
     }
 
-    def a = "git describe --tags --long --exclude v*".execute().text.trim().replaceFirst(
+    def a = "git describe --tags --long --match b*".execute().text.trim().replaceFirst(
         Pattern.compile('-g'), '+g')
     if (a != '')
         return a
