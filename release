@@ -1,4 +1,15 @@
 #!/usr/bin/env bash
-git push
+
+fatal()
+{
+        echo "$1"
+        exit 1
+}
+
+[[ -n $(git status --porcelain) ]] && fatal "Cannot release with uncommited changes."
+
+git push || fatal "push failed"
 A=$(./scmrev | sed -r 's/-.*//')
-git tag "v$A" && git push --tags
+git tag "v$A" || fatal "tag failed"
+git push --tags || fatal "push tags failed"
+#.
