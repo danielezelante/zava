@@ -43,7 +43,6 @@ def getRevision() {
     def z = a.replaceFirst(Pattern.compile('-g.*$'),'')
     def h = a.replaceFirst(Pattern.compile('^.*-g'),'')
     return "$z-$b-g$h"
-    
 }
 
 
