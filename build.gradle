@@ -22,12 +22,18 @@ dependencies {
 }
 
 
+def getBranch() {
+    def x = "git branch --show-current".execute().text.trim()
+    return x == '' ? 'master' : x
+}
+
+
 def getRevision() {
-    def a = "git -C ${rootProject.projectDir} describe --tags --long --exclude *-RELEASE".execute().text.trim()
+    def a = "git describe --tags --long --exclude *-RELEASE".execute().text.trim()
     if (a == '')
         return 'devel';
         
-    def b = "git -C ${rootProject.projectDir} branch --show-current".execute().text.trim()
+    def b = getBranch()
     if (b == '')
         return 'devel';
     
@@ -38,11 +44,6 @@ def getRevision() {
     def h = a.replaceFirst(Pattern.compile('^.*-g'),'')
     return "$z-$b-g$h"
     
-}
-
-def getBranch() {
-    def x = "git -C ${rootProject.projectDir} branch --show-current".execute().text.trim()
-    return x == '' ? 'master' : x
 }
 
 
@@ -88,7 +89,6 @@ publishing {
             from(components.java)
         }
     }
-    
     
     repositories {
         maven {
