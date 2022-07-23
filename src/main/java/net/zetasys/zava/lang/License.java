@@ -1,7 +1,7 @@
 /*
  * YAL zeldan
  */
-package net.zetasys.zava;
+package net.zetasys.zava.lang;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
