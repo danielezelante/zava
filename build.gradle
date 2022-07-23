@@ -32,7 +32,7 @@ def getRevision() {
     def v = "git describe --tags --long --match v*".execute().text.trim().replaceFirst(Pattern.compile('-g.*'), '')
     if (v != '') {
         def n = v.replaceFirst(Pattern.compile('.*-'), '')
-        if (n == 0)
+        if (n == '0')
             return v
                 .replaceFirst(Pattern.compile('-.*'), '')
                 .replaceFirst(Pattern.compile('^v'), '')
