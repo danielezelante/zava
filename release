@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
+git push
 A=$(./scmrev | sed -r 's/-.*//')
 git tag "v$A" && git push --tags
