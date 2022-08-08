@@ -24,6 +24,16 @@ public class Office
     
     public static int exportTableX(JTable t, XSSFSheet s, int rowoffset, CurrencyUnit defaultCurrency)
     {
+        final var dcm = t.getColumnModel();
+        final int[] columns = new int[dcm.getColumnCount()];
+        for (int j=0; j<columns.length; ++j)
+            columns[j] = j;
+        return exportTableX(t, columns, s, rowoffset, defaultCurrency);
+    }
+    
+
+    public static int exportTableX(JTable t, int[] columns, XSSFSheet s, int rowoffset, CurrencyUnit defaultCurrency)
+    {
         final var wb = s.getWorkbook();
         
         final var row0 = s.createRow(rowoffset);
@@ -72,20 +82,28 @@ public class Office
         integerStyle.setDataFormat((short)0x01);
         integerStyle.setAlignment(HorizontalAlignment.RIGHT);
         
-        for (int j=0; j<dcm.getColumnCount(); ++j)
+        for (int j=0; j<columns.length; ++j)
         {
+            final var colndx = columns[j];
+            if (colndx < 0 || colndx >= dcm.getColumnCount())
+                throw new IllegalArgumentException("column out of range");
             final var cell = row0.createCell(j);
-            cell.setCellValue(dcm.getColumn(j).getHeaderValue().toString());
+            cell.setCellValue(dcm.getColumn(colndx).getHeaderValue().toString());
             cell.setCellStyle(boldStyle);
         }
+        
         final var dtm = t.getModel();
         for (int vr = 0; vr<t.getRowCount(); ++vr)
         {
             final int r = t.convertRowIndexToModel(vr);
             final var rowx = s.createRow(vr + 1 + rowoffset);
-            for (int j=0; j<dtm.getColumnCount(); ++j)
+             
+            for (int j=0; j<columns.length; ++j)
             {
-                final Object o = dtm.getValueAt(r, j);
+                final var colndx = columns[j];
+                if (colndx < 0 || colndx >= dcm.getColumnCount())
+                    throw new IllegalArgumentException("column out of range");
+                final Object o = dtm.getValueAt(r, columns[j]);
                 final var cell = rowx.createCell(j);
                 
                 if (o != null)
@@ -125,8 +143,9 @@ public class Office
         
         return rowoffset + 1 + dtm.getRowCount();
     }
-    
 
+    
+    
     private Office() {}
     
     
