@@ -4,6 +4,9 @@
 package net.zetasys.zava.lang;
 
 import java.math.BigDecimal;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.util.Date;
 import javax.money.CurrencyUnit;
 import javax.money.MonetaryAmount;
 import org.javamoney.moneta.Money;
@@ -53,6 +56,16 @@ public class Nufe
         return v == null ? null : Money.of(v, c);
     }
     
+    
+    public static String format(Date date, DateFormat df)
+    {
+        return date == null ? null : df.format(date);
+    }
+
+    public static Date parse(String s, DateFormat df) throws ParseException
+    {
+        return s == null ? null : df.parse(s);
+    }
     
     
     protected Nufe() {}

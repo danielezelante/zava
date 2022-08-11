@@ -51,6 +51,16 @@ public class Numeric
         return x.isLessThanOrEqualTo(y) ? x : y;
     }
     
+    static public int mm2pt(int x)
+    {
+        return x * 720 / 254;
+    }
+    
+    static public int mm2pt(double x)
+    {
+        return (int)(x * 720.0 / 254.0 + 0.5);
+    }
+    
  
     
     private Numeric() {}

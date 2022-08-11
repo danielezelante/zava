@@ -17,6 +17,8 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.KeyStroke;
 
+import net.zetasys.zava.lang.DataException;
+
 /**
  *
  * @author zeldan
@@ -39,24 +41,23 @@ public class Zwing
         );
     }
 
-    public static void showImage(JLabel label, byte[] data) throws IOException
+  
+    public static void showImage(JLabel label, byte[] data) throws IOException, DataException
     {
         if (data != null)
         {
             final var lw = label.getWidth();
             final var lh = label.getHeight();
             final var bim = ImageIO.read(new ByteArrayInputStream(data));
+            if (bim == null)
+                throw new DataException(data);
+            
             final var xlw = lw * bim.getHeight() > lh * bim.getWidth() ? -lw : lw;
             final var xlh = lw * bim.getHeight() < lh * bim.getWidth() ? -lh : lh;
-            
-            label.setIcon(
-                new ImageIcon(bim.getScaledInstance(xlw, xlh, BufferedImage.SCALE_SMOOTH)
-                )
-            );
-        }
-        else
+
+            label.setIcon(new ImageIcon(bim.getScaledInstance(xlw, xlh, BufferedImage.SCALE_SMOOTH)));
+        } else
             label.setIcon(null);
-        
     }
     
     
