@@ -21,6 +21,11 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
 }
 
+java {
+    withSourcesJar()
+    // and/or analogously use “withJavadocJar()” to get a “javadocJar” task
+}
+
 
 def getBranch() {
     def x = "git branch --show-current".execute().text.trim()
