@@ -116,10 +116,17 @@ public class Epson
         s.write(x);
     }
     
-    public void setLengthLines(int x) throws IOException
+    public void setPageLengthLines(int x) throws IOException
     {
         escape('C');
         s.write(x);
+    }
+    
+    public void setPageLengthInches(int x) throws IOException
+    {
+        escape('C');
+        s.write(0);
+        s.write(x);        
     }
     
     public void setStep180(int x) throws IOException
