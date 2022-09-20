@@ -191,6 +191,35 @@ public class Zql
         return s;
     }
     
+    
+    public static Integer getIntegerUnique(ResultSet rs, int nfield)
+        throws SQLException, NotUniqueException
+    {
+        Integer s = null;
+        while (rs.next())
+        {
+            if (s != null)
+                throw new NotUniqueException(null, null);
+            s = getInteger(rs, nfield);
+        }
+
+        return s;
+    }
+
+    public static Integer getIntegerUnique(ResultSet rs, String field)
+        throws SQLException, NotUniqueException
+    {
+        Integer s = null;
+        while (rs.next())
+        {
+            if (s != null)
+                throw new NotUniqueException(null, null);
+            s = getInteger(rs, field);
+        }
+
+        return s;
+    }
+    
     public static Money getMoney(ResultSet rs, String valorfield, String currencyfield) throws SQLException, BadDataException
     {
         final var valor = getBigDecimal(rs, valorfield);
@@ -276,6 +305,12 @@ public class Zql
     public static Integer getInteger(ResultSet rs, String field) throws SQLException
     {
         final var x = rs.getInt(field);
+        return rs.wasNull() ? null : x;
+    }
+    
+     public static Integer getInteger(ResultSet rs, int nfield) throws SQLException
+    {
+        final var x = rs.getInt(nfield);
         return rs.wasNull() ? null : x;
     }
 
