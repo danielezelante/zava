@@ -95,6 +95,13 @@ public class Epson
         write(x);
         CR(); LF();
     }
+    
+    public void writeln180(String x, int a180) throws IOException
+    {
+        write(x);
+        CR();
+        advance180(a180);
+    }
 
     public void uel() throws IOException
     {
