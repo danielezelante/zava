@@ -109,6 +109,7 @@ public class Zql
     }
 
     
+    // TODO useless, since ResultSet.getString returns null if sql NULL
     public static String getString(ResultSet rs, String field) throws SQLException
     {
         final var x = rs.getString(field);
