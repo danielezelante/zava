@@ -28,7 +28,6 @@ import org.apache.commons.lang3.StringUtils;
  */
 public class UniAscii
 {
-    protected UniAscii() {}
     
     static public String downgrade(String a)
     {
@@ -59,4 +58,5 @@ public class UniAscii
         
         return y.toString();
     }
+    protected UniAscii() {}
 }

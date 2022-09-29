@@ -129,7 +129,7 @@ public class Unit
     
     static public class InvalidDomainError extends Error
     {
-        private static final long serialVersionUID = 1099507392840488519L;
+        private static final long serialVersionUID = 1L;
         public InvalidDomainError() {}
     }
 }
