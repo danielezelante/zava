@@ -92,6 +92,14 @@ public class Zql
             st.setInt(field, value);
     }
 
+    public static void setLong(PreparedStatement st, int field, Long value) throws SQLException
+    {
+        if (value == null)
+            st.setNull(field, java.sql.Types.BIGINT);
+        else
+            st.setLong(field, value);
+    }
+    
     public static void setBigDecimal(PreparedStatement st, int field, BigDecimal value) throws SQLException
     {
         if (value == null)
