@@ -1,7 +1,7 @@
 /*
  * YAL zeldan
  */
-package net.zetasys.gestum.math;
+package net.zetasys.zava.math;
 
 
 import org.junit.After;

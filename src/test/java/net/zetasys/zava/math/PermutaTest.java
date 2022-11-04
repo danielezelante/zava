@@ -1,7 +1,7 @@
 /*
  * YAL zeldan
  */
-package net.zetasys.gestum.math;
+package net.zetasys.zava.math;
 
 import java.util.logging.Logger;
 import net.zetasys.zava.math.Permuta;
