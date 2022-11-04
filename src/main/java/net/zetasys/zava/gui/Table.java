@@ -133,7 +133,12 @@ public class Table
             {
                 final var w = pref.getDouble(getWidthPref(table, vparent, j), -1);
                 if (w >= 0)
-                    tm.getColumn(j).setPreferredWidth((int)(w * scale));
+                {
+                    final var iw = (int)(w * scale);
+                    final var co = tm.getColumn(j);
+                    co.setPreferredWidth(iw);
+                    co.setWidth(iw);
+                }
             }
         }
     }
