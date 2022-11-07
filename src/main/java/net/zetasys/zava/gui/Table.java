@@ -21,6 +21,8 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 package net.zetasys.zava.gui;
 
 import java.awt.Component;
+import java.lang.System.Logger.Level;
+import java.lang.invoke.MethodHandles;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.prefs.Preferences;
@@ -32,7 +34,8 @@ import javax.swing.table.TableColumnModel;
 
 public class Table
 {
-
+    private static final System.Logger LOG = System.getLogger(MethodHandles.lookup().lookupClass().getPackageName());
+    
     static public void right(JTable table, int[] ndxa)
     {
         final TableColumnModel cm = table.getColumnModel();
@@ -102,10 +105,7 @@ public class Table
     public static void saveWidths(JTable table, Component vparent, Preferences pref)
     {
         final var tm = table.getColumnModel();
-        int tw = 0;
-        for (int j=0; j<tm.getColumnCount(); ++j)
-            tw += tm.getColumn(j).getWidth();
-        
+        final int tw = tm.getTotalColumnWidth();
         if (tw > 0)
         {
             final double dtw = tw;
@@ -118,9 +118,7 @@ public class Table
     public static void loadWidths(JTable table, Component vparent, Preferences pref)
     {
         final var tm = table.getColumnModel();
-        int tw = 0;
-        for (int j=0; j<tm.getColumnCount(); ++j)
-            tw += tm.getColumn(j).getWidth();
+        final int tw = tm.getTotalColumnWidth();
         
         double dtw = 0;
         for (int j=0; j<tm.getColumnCount(); ++j)
@@ -133,12 +131,7 @@ public class Table
             {
                 final var w = pref.getDouble(getWidthPref(table, vparent, j), -1);
                 if (w >= 0)
-                {
-                    final var iw = (int)(w * scale);
-                    final var co = tm.getColumn(j);
-                    co.setPreferredWidth(iw);
-                    co.setWidth(iw);
-                }
+                    tm.getColumn(j).setPreferredWidth((int)(w * scale));
             }
         }
     }

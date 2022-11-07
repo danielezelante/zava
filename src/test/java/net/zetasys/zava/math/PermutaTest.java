@@ -4,7 +4,6 @@
 package net.zetasys.zava.math;
 
 import java.util.logging.Logger;
-import net.zetasys.zava.math.Permuta;
 import org.junit.After;
 import org.junit.AfterClass;
 import static org.junit.Assert.*;
