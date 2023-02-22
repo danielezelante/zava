@@ -6,5 +6,5 @@ self-hosted development sequence:
 - modify
 - `./gradlew build` (optional to pre-check) if fail go back to *modify*
 - `./wipver X.Y.Z` (optional semantic version change depending on what was modified)
-- `release`
+- `./release`
 - create release on github web for the existing tag: *vX.Y.Z*
