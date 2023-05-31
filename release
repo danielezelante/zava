@@ -25,11 +25,12 @@ if ! git push origin "refs/tags/$TAG" ; then
     fatal 'push tags failed'
 fi    
 
-./gradlew publish || 'package to gitea failed'
-
 if ! tools/release-tea.sh "$TAG"; then
     git push --delete origin "$TAG"
     git tag --delete "$TAG"
     fatal 'release to gitea failed'
 fi
+
+./gradlew publish || 'package to gitea failed'
+
 #.
