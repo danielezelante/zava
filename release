@@ -9,7 +9,7 @@ fatal()
 [[ -n $(git status --porcelain) ]] && fatal 'you should commmit before'
 
 git push || fatal 'push failed'
-A=$(./scmrev | sed -r 's/-.*//')
-git tag "v$A" || fatal 'tag failed'
-git push origin "refs/tags/v$A" || fatal 'push tags failed'
+A=$(./scmrev | sed -r 's/-g.*//')
+git tag "$A" || fatal 'tag failed'
+git push origin "refs/tags/$A" || fatal 'push tags failed'
 #.

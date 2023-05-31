@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+fatal()
+{
+    echo "$1"
+    exit 1
+}
+
+RP=$(realpath "$0")
+MYDIR=$(dirname "$RP")
+cd "$MYDIR" || fatal 'cannot find mydir'
+
+if [[ -z "$1" ]] ; then
+    cat 'basetag'
+else
+    BRANCH=$(git branch --show-current)
+    [[ "$BRANCH" == 'main' ]] || fatal "versions not allowed on branch $BRANCH"
+    echo "$1" > 'basetag'
+    git commit -a -m "newver $1" || fatal 'git commit failed'
+    git tag "$1" || fatal 'git tag failed'
+    git push origin "$1" || fatal 'git push failed'
+fi
+#.
+
