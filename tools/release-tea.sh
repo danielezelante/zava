@@ -1,21 +1,16 @@
 #!/usr/bin/env bash
 
+set -x
+
 readonly SITE='https://zetasys.net/gitea/api/v1'
-#readonly SITE='http://172.16.1.248:3000/api/v1'
 readonly ORGN='zetasys.net'
-readonly REPO='sigeco'
+readonly REPO='zava'
 TOKEN=$(grep '^gitea\.key=' "$HOME/.gradle/gradle.properties" | sed -E 's/.*=//')
 
 function fatal()
 {
     echo "$1"
     exit 1
-}
-
-function fname()
-{
-    [[ -z "$1" ]] && fatal 'program required'
-    realpath "$1/build/distributions/$1-shadow-$VER.zip"
 }
 
 function uploadasset()
@@ -40,10 +35,7 @@ function makerelease()
     
     [[ $X == 'null' ]] && fatal 'error creating release'
     
-    uploadasset "$(fname 'negotium')" "$X"
-    uploadasset "$(fname 'totem')" "$X"
-    uploadasset "$(fname 'smartstockimport')" "$X"
-    uploadasset "$(fname 'keygen')" "$X"
+    uploadasset "build/distributions/zava-shadow-$VER.zip" "$X"
 }
 
 
