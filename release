@@ -12,7 +12,7 @@ SCMVER=$(./scmrev)
 [[ -z "$SCMVER" ]] && fatal 'cannot get local version'
 TAG=$(echo "$SCMVER" | sed -r 's/-g.*//')
 git tag "$TAG" || fatal 'git tag failed'
-if ! ./dobuild ; then
+if ! ./gradlew build ; then
     git tag --delete "$TAG"
     fatal 'build failed'
 fi
