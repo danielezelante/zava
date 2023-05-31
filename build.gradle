@@ -49,22 +49,11 @@ java {
 }
 
 
+
+
+
 def getRevision() {
-    def a = "git -C ${rootProject.projectDir} describe --tags --long --exclude *-*".execute().text.trim()
-    if (a == '')
-        return 'devel';
-        
-    def b = "git -C ${rootProject.projectDir} branch --show-current".execute().text.trim()
-    if (b == '')
-        return 'devel';
-    
-    if (b == 'main')
-        return a;
-        
-    def z = a.replaceFirst(Pattern.compile('-g.*$'),'')
-    def h = a.replaceFirst(Pattern.compile('^.*-g'),'')
-    return "$z-$b-g$h"
-    
+    return "git describe --tags --long --exclude *-*".execute().text.trim()
 }
 
 def getBranch() {
