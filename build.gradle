@@ -53,7 +53,17 @@ java {
 
 
 def getRevision() {
-    return "git describe --tags --long --exclude *-*".execute().text.trim()
+    def a = "git describe --tags --long --exclude *-*".execute().text.trim()
+    if (a == '')
+        return 'devel';
+    def b = "git branch --show-current".execute().text.trim()
+    if (b == '')
+        return 'devel';
+    if (b == 'main')
+        return a;
+    def z = a.replaceFirst(Pattern.compile('-g.*$'),'')
+    def h = a.replaceFirst(Pattern.compile('^.*-g'),'')
+    return "$z-$b-g$h"
 }
 
 def getBranch() {
@@ -106,16 +116,17 @@ publishing {
         }
     }
     
-    repositories {
-        maven {
-            name = "GitHubPackages"
-            url = "https://maven.pkg.github.com/danielezelante/zava"
-            credentials {
-                username = System.getenv("GH_USERNAME")
-                password = System.getenv("GH_TOKEN")
-            }
-        }
+	repositories {
+		maven {
+			name = "gitea"
+			url = "https://zetasys.net/gitea/api/packages/zetasys.net/maven"
+			credentials {
+				username = project.findProperty("gitea.user") ?: System.getenv("USERNAME")
+				password = project.findProperty("gitea.key") ?: System.getenv("TOKEN")
+			}
+	    }
     }
-    
 }
+    
+
 
