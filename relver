@@ -1,4 +1,0 @@
-#!/usr/bin/env bash
-git describe --tags --long --match 'v*' | sed -s 's/-.*//;s/^v//'
-#.
-

@@ -1,19 +1,17 @@
 #!/usr/bin/env bash
 
-A=$(git describe --tags --long --match 'v*' | sed -r 's/-g.*//')
-if [[ -n "$A" ]] ; then
-    N=$(echo "$A" | sed -r 's/^.*-//')
-    if [[ $N -eq 0 ]] ; then
-        echo "$A" | sed -r 's/-.*//;s/^v//'
-        exit 0
-    fi
-fi
+RP=$(realpath "$0")
+D=$(dirname "$RP")
 
-A=$(git describe --tags --long --match 'b*' | sed -r 's/-g/+g/;s/^b//')
-if [[ -n "$A" ]] ; then
-    echo "$A"
-    exit 0
+B=$(git branch --show-current 2> /dev/null)
+[[ -z "$B" ]] && exit 1
+if [[ "$B" == 'master' ]] ; then
+    C=''
+else
+    C="-$B"
 fi
-
-exit 1
+T=$(git describe --always --tags --long --exclude '*-*' --match '[0-9].*')
+TB=$(echo "$T" | sed -r 's/-.*//')
+TK=$(<"$D/basetag")
+[[ "$TB" == "$TK" ]] && echo "$T$C" || echo "! $TB <> $TK"
 #.
