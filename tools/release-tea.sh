@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-set -x
-
 readonly SITE='https://zetasys.net/gitea/api/v1'
 readonly ORGN='zetasys.net'
 readonly REPO='zava'
@@ -13,15 +11,6 @@ function fatal()
     exit 1
 }
 
-function uploadasset()
-{
-    echo "Uploading asset '$1' ..."
-    local URL="$SITE/repos/$ORGN/$REPO/releases/$2/assets"
-    curl -s --user "${USER}:${TOKEN}" -X 'POST' "$URL" \
-        -H 'accept: application/json' \
-        -H 'Content-Type: multipart/form-data' \
-        -F "attachment=@$1" > /dev/null || fatal 'upload asset failed'
-}
         
 function makerelease()
 {
@@ -35,7 +24,6 @@ function makerelease()
     
     [[ $X == 'null' ]] && fatal 'error creating release'
     
-    uploadasset "build/distributions/zava-shadow-$VER.zip" "$X"
 }
 
 

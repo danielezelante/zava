@@ -1,5 +1,5 @@
 # zava
-useful(less) java classes by zetasys.net
+useful Java classes by zetasys.net
 
 self-hosted development sequence:
 - `./newver` (optional to get actual wip version)
