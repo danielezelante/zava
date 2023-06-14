@@ -23,10 +23,7 @@
  */
 package net.zetasys.zava.lang;
 
-/**
- *
- * @author zeldan
- */
+
 public class UniqueCheck<T>
 {
     protected final boolean nullok;

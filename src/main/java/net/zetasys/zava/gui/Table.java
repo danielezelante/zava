@@ -21,8 +21,6 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 package net.zetasys.zava.gui;
 
 import java.awt.Component;
-import java.lang.System.Logger.Level;
-import java.lang.invoke.MethodHandles;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.prefs.Preferences;
@@ -34,7 +32,7 @@ import javax.swing.table.TableColumnModel;
 
 public class Table
 {
-    private static final System.Logger LOG = System.getLogger(MethodHandles.lookup().lookupClass().getPackageName());
+    //private static final System.Logger LOG = System.getLogger(MethodHandles.lookup().lookupClass().getPackageName());
     
     static public void right(JTable table, int[] ndxa)
     {
