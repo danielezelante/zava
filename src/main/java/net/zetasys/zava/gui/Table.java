@@ -17,7 +17,7 @@ FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
 COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
 IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-*/
+ */
 package net.zetasys.zava.gui;
 
 import java.awt.Component;
@@ -33,7 +33,7 @@ import javax.swing.table.TableColumnModel;
 public class Table
 {
     //private static final System.Logger LOG = System.getLogger(MethodHandles.lookup().lookupClass().getPackageName());
-    
+
     static public void right(JTable table, int[] ndxa)
     {
         final TableColumnModel cm = table.getColumnModel();
@@ -94,12 +94,11 @@ public class Table
             s.setComparator(k, Comparator.naturalOrder());
     }
 
-    
     protected static String getWidthPref(JTable table, Component vparent, int c)
     {
         return String.format("%s/%s[%d]", vparent.getName(), table.getName(), c);
     }
-    
+
     public static void saveWidths(JTable table, Component vparent, Preferences pref)
     {
         final var tm = table.getColumnModel();
@@ -107,35 +106,32 @@ public class Table
         if (tw > 0)
         {
             final double dtw = tw;
-            for (int j=0; j<tm.getColumnCount(); ++j)
+            for (int j = 0; j < tm.getColumnCount(); ++j)
                 pref.putDouble(getWidthPref(table, vparent, j), tm.getColumn(j).getWidth() / dtw);
         }
     }
- 
-    
+
     public static void loadWidths(JTable table, Component vparent, Preferences pref)
     {
         final var tm = table.getColumnModel();
         final int tw = tm.getTotalColumnWidth();
-        
+
         double dtw = 0;
-        for (int j=0; j<tm.getColumnCount(); ++j)
+        for (int j = 0; j < tm.getColumnCount(); ++j)
             dtw += pref.getDouble(getWidthPref(table, vparent, j), 0);
-        
+
         if (dtw > 0)
         {
             final var scale = tw / dtw;
-            for (int j=0; j<tm.getColumnCount(); ++j)
+            for (int j = 0; j < tm.getColumnCount(); ++j)
             {
                 final var w = pref.getDouble(getWidthPref(table, vparent, j), -1);
                 if (w >= 0)
-                    tm.getColumn(j).setPreferredWidth((int)(w * scale));
+                    tm.getColumn(j).setPreferredWidth((int) (w * scale));
             }
         }
     }
-    
-    
-    
+
     private Table()
     {
     }

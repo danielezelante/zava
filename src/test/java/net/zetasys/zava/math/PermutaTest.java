@@ -13,6 +13,7 @@ import org.junit.Test;
 
 public class PermutaTest
 {
+
     private static final Logger LOG = Logger.getLogger(PermutaTest.class.getName());
 
     @BeforeClass

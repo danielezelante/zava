@@ -17,7 +17,7 @@ FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
 COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
 IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-*/
+ */
 package net.zetasys.zava.math;
 
 import java.math.BigDecimal;
@@ -28,6 +28,7 @@ import org.apache.commons.math3.stat.regression.SimpleRegression;
 
 public class Accumulator
 {
+
     final TreeMap<Long, BigDecimal> data = new TreeMap<>();
     private TreeMap<Long, BigDecimal> sums;
 

@@ -17,7 +17,7 @@ FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
 COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
 IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-*/
+ */
 package net.zetasys.zava.db;
 
 /**
@@ -26,9 +26,10 @@ package net.zetasys.zava.db;
  */
 public class NotUniqueException extends BadSchemaException
 {
+
     public NotUniqueException(String table, String field)
     {
         super(table, field, "not unique");
     }
-    
+
 }

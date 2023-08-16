@@ -17,7 +17,7 @@ FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
 COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
 IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-*/
+ */
 package net.zetasys.zava.lang;
 
 import org.apache.commons.lang3.StringUtils;
@@ -28,35 +28,38 @@ import org.apache.commons.lang3.StringUtils;
  */
 public class UniAscii
 {
-    
+
     static public String downgrade(String a)
     {
         final var x = StringUtils.stripAccents(a);
         final var z = x.length();
         final var y = new StringBuilder(z);
-        
-        for (int j=0; j<z; ++j)
+
+        for (int j = 0; j < z; ++j)
         {
             final var k = x.charAt(j);
             switch (k)
             {
-                case '\u00AD' :
-                case '\u2010' :
-                case '\u2011' :
-                case '\u2012' :
-                case '\u2013' :
-                case '\u2014' :
-                case '\u2015' :
+                case '\u00AD':
+                case '\u2010':
+                case '\u2011':
+                case '\u2012':
+                case '\u2013':
+                case '\u2014':
+                case '\u2015':
                     y.append('-');
                     break;
-                    
-                default: y.append(k);
+
+                default:
+                    y.append(k);
             }
-            
-            
+
         }
-        
+
         return y.toString();
     }
-    protected UniAscii() {}
+
+    protected UniAscii()
+    {
+    }
 }

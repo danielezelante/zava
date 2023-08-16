@@ -17,7 +17,7 @@ FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
 COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
 IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-*/
+ */
 package net.zetasys.zava.gui;
 
 import java.awt.event.KeyEvent;
@@ -41,23 +41,23 @@ import net.zetasys.zava.lang.DataException;
  */
 public class Zwing
 {
+
     public static void escapeClose(JFrame w)
     {
         w.getRootPane().registerKeyboardAction(
-            e -> w.dispatchEvent(new WindowEvent(w, WindowEvent.WINDOW_CLOSING)),
-            KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_IN_FOCUSED_WINDOW
-        );
-    }
-    
-    public static void escapeClose(JDialog w)
-    {
-        w.getRootPane().registerKeyboardAction(
-            e -> w.dispatchEvent(new WindowEvent(w, WindowEvent.WINDOW_CLOSING)),
-            KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_IN_FOCUSED_WINDOW
+                e -> w.dispatchEvent(new WindowEvent(w, WindowEvent.WINDOW_CLOSING)),
+                KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_IN_FOCUSED_WINDOW
         );
     }
 
-  
+    public static void escapeClose(JDialog w)
+    {
+        w.getRootPane().registerKeyboardAction(
+                e -> w.dispatchEvent(new WindowEvent(w, WindowEvent.WINDOW_CLOSING)),
+                KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_IN_FOCUSED_WINDOW
+        );
+    }
+
     public static void showImage(JLabel label, byte[] data) throws IOException, DataException
     {
         if (data != null)
@@ -67,7 +67,7 @@ public class Zwing
             final var bim = ImageIO.read(new ByteArrayInputStream(data));
             if (bim == null)
                 throw new DataException(data);
-            
+
             final var xlw = lw * bim.getHeight() > lh * bim.getWidth() ? -lw : lw;
             final var xlh = lw * bim.getHeight() < lh * bim.getWidth() ? -lh : lh;
 
@@ -75,8 +75,7 @@ public class Zwing
         } else
             label.setIcon(null);
     }
-    
-    
+
     public static void autoNatural(final JTextField g)
     {
         g.setHorizontalAlignment(JTextField.RIGHT);
@@ -136,10 +135,8 @@ public class Zwing
             });
     }
 
-    
-    
     protected Zwing()
     {
     }
-    
+
 }

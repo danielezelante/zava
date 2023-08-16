@@ -17,7 +17,7 @@ FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
 COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
 IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-*/
+ */
 package net.zetasys.zava.db;
 
 /**
@@ -26,21 +26,22 @@ package net.zetasys.zava.db;
  */
 public class BadSchemaException extends Exception
 {
+
     final protected String table;
     final protected String field;
     final protected String text;
-    
+
     public BadSchemaException(String table, String field, String text)
     {
         this.table = table;
         this.field = field;
         this.text = text;
     }
-    
+
     @Override
     public String toString()
     {
-        return String.format("BadSchemaException: table=%s field=%s text=%s", 
-            table, field, text);
+        return String.format("BadSchemaException: table=%s field=%s text=%s",
+                table, field, text);
     }
 }

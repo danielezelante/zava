@@ -17,8 +17,7 @@ FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
 COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
 IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-*/
-
+ */
 package net.zetasys.zava.db;
 
 import java.math.BigDecimal;
@@ -32,6 +31,7 @@ import org.javamoney.moneta.Money;
 
 /**
  * JDBC SQL wrapper to allow transparent conversion of java-null to SQL-NULL
+ *
  * @author zeldan
  */
 public class Zql
@@ -63,6 +63,7 @@ public class Zql
 
     /**
      * set Double value in statement, converting java-null to SQL-NULL
+     *
      * @param st PreparedStatement to use
      * @param field field index (1-based)
      * @param value value to set (null is allowed)
@@ -99,7 +100,7 @@ public class Zql
         else
             st.setLong(field, value);
     }
-    
+
     public static void setBigDecimal(PreparedStatement st, int field, BigDecimal value) throws SQLException
     {
         if (value == null)
@@ -116,7 +117,6 @@ public class Zql
             st.setTimestamp(field, value);
     }
 
-    
     // TODO useless, since ResultSet.getString returns null if sql NULL
     public static String getString(ResultSet rs, String field) throws SQLException
     {
@@ -131,7 +131,7 @@ public class Zql
     }
 
     public static String getStringUnique(ResultSet rs, String field)
-        throws SQLException, NotUniqueException
+            throws SQLException, NotUniqueException
     {
         String s = null;
         while (rs.next())
@@ -145,7 +145,7 @@ public class Zql
     }
 
     public static String getStringUnique(ResultSet rs, int nfield)
-        throws SQLException, NotUniqueException
+            throws SQLException, NotUniqueException
     {
         String s = null;
         while (rs.next())
@@ -159,7 +159,7 @@ public class Zql
     }
 
     public static Timestamp getTimestampUnique(ResultSet rs, String field)
-        throws SQLException, NotUniqueException
+            throws SQLException, NotUniqueException
     {
         Timestamp s = null;
         while (rs.next())
@@ -173,7 +173,7 @@ public class Zql
     }
 
     public static Long getLongUnique(ResultSet rs, int nfield)
-        throws SQLException, NotUniqueException
+            throws SQLException, NotUniqueException
     {
         Long s = null;
         while (rs.next())
@@ -187,7 +187,7 @@ public class Zql
     }
 
     public static Long getLongUnique(ResultSet rs, String field)
-        throws SQLException, NotUniqueException
+            throws SQLException, NotUniqueException
     {
         Long s = null;
         while (rs.next())
@@ -199,10 +199,9 @@ public class Zql
 
         return s;
     }
-    
-    
+
     public static Integer getIntegerUnique(ResultSet rs, int nfield)
-        throws SQLException, NotUniqueException
+            throws SQLException, NotUniqueException
     {
         Integer s = null;
         while (rs.next())
@@ -216,7 +215,7 @@ public class Zql
     }
 
     public static Integer getIntegerUnique(ResultSet rs, String field)
-        throws SQLException, NotUniqueException
+            throws SQLException, NotUniqueException
     {
         Integer s = null;
         while (rs.next())
@@ -228,7 +227,7 @@ public class Zql
 
         return s;
     }
-    
+
     public static Money getMoney(ResultSet rs, String valorfield, String currencyfield) throws SQLException, BadDataException
     {
         final var valor = getBigDecimal(rs, valorfield);
@@ -244,7 +243,7 @@ public class Zql
     {
         return x.scale() >= 0 ? x : x.setScale(0);
     }
-    
+
     public static BigDecimal getBigDecimal(ResultSet rs, String field) throws SQLException
     {
         final var x = rs.getBigDecimal(field);
@@ -258,7 +257,7 @@ public class Zql
     }
 
     public static BigDecimal getBigDecimalUnique(ResultSet rs, String field)
-        throws SQLException, NotUniqueException
+            throws SQLException, NotUniqueException
     {
         BigDecimal s = null;
         while (rs.next())
@@ -272,7 +271,7 @@ public class Zql
     }
 
     public static BigDecimal getBigDecimalUnique(ResultSet rs, int nfield)
-        throws SQLException, NotUniqueException
+            throws SQLException, NotUniqueException
     {
         BigDecimal s = null;
         while (rs.next())
@@ -292,7 +291,7 @@ public class Zql
     }
 
     public static Boolean getBooleanUnique(ResultSet rs, String field)
-        throws SQLException, NotUniqueException
+            throws SQLException, NotUniqueException
     {
         Boolean s = null;
         while (rs.next())
@@ -316,8 +315,8 @@ public class Zql
         final var x = rs.getInt(field);
         return rs.wasNull() ? null : x;
     }
-    
-     public static Integer getInteger(ResultSet rs, int nfield) throws SQLException
+
+    public static Integer getInteger(ResultSet rs, int nfield) throws SQLException
     {
         final var x = rs.getInt(nfield);
         return rs.wasNull() ? null : x;
@@ -338,11 +337,11 @@ public class Zql
     public static java.sql.Date importDate(java.util.Date date)
     {
         return date == null ? null
-            : java.sql.Date.valueOf(
-                LocalDateTime.ofInstant(
-                    date.toInstant(), ZoneId.systemDefault()
-                ).toLocalDate()
-            );
+                : java.sql.Date.valueOf(
+                        LocalDateTime.ofInstant(
+                                date.toInstant(), ZoneId.systemDefault()
+                        ).toLocalDate()
+                );
 
     }
 

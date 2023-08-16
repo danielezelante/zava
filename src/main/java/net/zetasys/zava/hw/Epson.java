@@ -17,7 +17,7 @@ FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
 COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
 IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-*/
+ */
 package net.zetasys.zava.hw;
 
 import java.io.IOException;
@@ -31,71 +31,72 @@ import net.zetasys.zava.lang.UniAscii;
  */
 public class Epson
 {
+
     protected final OutputStream s;
-    
+
     public Epson(OutputStream s)
     {
         this.s = s;
     }
-    
+
     public void reset() throws IOException
     {
         escape('@');
     }
-    
-    
+
     public void CR() throws IOException
     {
         s.write(0x0D);
     }
-    
+
     public void LF() throws IOException
     {
         s.write(0x0A);
     }
-    
+
     public void FF() throws IOException
     {
         s.write(0x0C);
     }
-    
+
     protected void escape(char k) throws IOException
     {
         s.write(0x1B);
         s.write(k);
     }
-    
+
     public void cpi10() throws IOException
     {
         escape('P');
     }
-    
+
     public void cpi12() throws IOException
     {
         escape('M');
     }
-    
+
     public void cpi15() throws IOException
     {
         escape('g');
     }
-    
+
     public void bold(boolean x) throws IOException
     {
         escape(x ? 'E' : 'F');
     }
-       
+
     public void write(String x) throws IOException
     {
         s.write(UniAscii.downgrade(x).getBytes(StandardCharsets.US_ASCII));
     }
-    
+
     public void writeln(String x) throws IOException
     {
         write(x);
-        CR(); LF();
+        CR();
+        LF();
     }
-    
+
     public void writeln180(String x, int a180) throws IOException
     {
         write(x);
@@ -106,58 +107,55 @@ public class Epson
     public void uel() throws IOException
     {
         s.write(0x1B);
-        write("%-12345X");    
+        write("%-12345X");
     }
-    
-    
+
     public void uel_escp() throws IOException
     {
         uel();
         writeln("@PJL COMMENT ESC/P ");
         writeln("@PJL ENTER LANGUAGE = ESCP ");
     }
-    
+
     public void leftMargin(int x) throws IOException
     {
         escape('l');
         s.write(x);
     }
-    
+
     public void setPageLengthLines(int x) throws IOException
     {
         escape('C');
         s.write(x);
     }
-    
+
     public void setPageLengthInches(int x) throws IOException
     {
         escape('C');
         s.write(0);
-        s.write(x);        
+        s.write(x);
     }
-    
+
     public void setStep180(int x) throws IOException
     {
         escape('3');
         s.write(x);
     }
-    
-    
+
     public void condensed() throws IOException
     {
         s.write(0x0F);
     }
-    
-   
+
     public void advance180(int x) throws IOException
     {
         escape('J');
         s.write(x);
     }
-    
+
     public void BEL() throws IOException
     {
-        s.write(0x07); 
+        s.write(0x07);
     }
 
     public void load() throws IOException
@@ -166,5 +164,5 @@ public class Epson
         //s.write('B');
         // automatico ??
     }
-    
+
 }

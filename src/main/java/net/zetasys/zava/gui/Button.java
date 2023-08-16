@@ -17,7 +17,7 @@ FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
 COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
 IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-*/
+ */
 package net.zetasys.zava.gui;
 
 import java.awt.event.ActionEvent;
@@ -34,15 +34,16 @@ import javax.swing.KeyStroke;
  */
 public class Button
 {
+
     public static void setHotKey(JButton button, String key, ActionListener listener)
     {
-        setHotKey(button, KeyStroke.getKeyStroke(key),  listener);
+        setHotKey(button, KeyStroke.getKeyStroke(key), listener);
         button.setText(String.format("%s [%s]", button.getText(), key));
     }
-    
+
     public static void setHotKey(JButton button, KeyStroke key, ActionListener listener)
     {
-        setHotKey(button, key,  new AbstractAction()
+        setHotKey(button, key, new AbstractAction()
         {
             @Override
             public void actionPerformed(ActionEvent evt)
@@ -51,7 +52,7 @@ public class Button
             }
         });
     }
-    
+
     public static void setHotKey(JButton button, KeyStroke key, AbstractAction action)
     {
         final String mapKey = key.toString();

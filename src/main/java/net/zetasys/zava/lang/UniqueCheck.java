@@ -23,17 +23,17 @@
  */
 package net.zetasys.zava.lang;
 
-
 public class UniqueCheck<T>
 {
+
     protected final boolean nullok;
     protected T value;
-    
+
     public UniqueCheck(boolean nullok)
     {
         this.nullok = nullok;
     }
-    
+
     public boolean set(T x)
     {
         if (x == null)
@@ -43,10 +43,10 @@ public class UniqueCheck<T>
         value = x;
         return true;
     }
-    
+
     public T get()
     {
         return value;
     }
-    
+
 }

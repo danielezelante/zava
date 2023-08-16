@@ -17,7 +17,7 @@ FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
 COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
 IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-*/
+ */
 package net.zetasys.zava.lang;
 
 /**
@@ -26,16 +26,17 @@ package net.zetasys.zava.lang;
  */
 public class DataException extends Exception
 {
+
     protected final Object data;
-    
+
     public DataException(Object data)
     {
         this.data = data;
     }
-    
+
     public Object getData()
     {
         return this.data;
     }
-    
+
 }

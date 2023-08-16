@@ -17,7 +17,7 @@ FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
 COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
 IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-*/
+ */
 package net.zetasys.zava.gui;
 
 import java.awt.Component;
@@ -43,7 +43,7 @@ public class DecimalRenderer extends DefaultTableCellRenderer
     final int decdigits;
     final boolean showall;
     final char decimal_sep;
-    
+
     public DecimalRenderer(int decdigits)
     {
         this(decdigits, true);
@@ -71,11 +71,10 @@ public class DecimalRenderer extends DefaultTableCellRenderer
             if (k == this.decimal_sep)
                 sb.append('.');
         }
-        
+
         return sb.toString();
     }
-    
-    
+
     @Override
     public void setValue(Object value)
     {
@@ -107,7 +106,7 @@ public class DecimalRenderer extends DefaultTableCellRenderer
 
                     svalue = fmt.format(value);
                 }
-                
+
                 if (value instanceof String s)
                 {
                     final var n = s.isBlank() ? null : new BigDecimal(decsepToPoint(s.strip()));
