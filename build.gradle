@@ -49,16 +49,20 @@ java {
 }
 
 
-
-
+def run(String cmd) {
+    def s = new StringBuilder()
+    def p = cmd.execute()
+    p.waitForProcessOutput(s, System.err)
+    return s.toString().trim()
+}
 
 def getRevision() {
-    def a = "git describe --tags --long --exclude *-*".execute().text.trim()
+    def a = run("git describe --tags --long --exclude *-*")
     if (a == '')
         return 'devel';
-    def b = "git branch --show-current".execute().text.trim()
+    def b = run("git branch --show-current")
     if (b == '')
-        return 'devel';
+        return 'devel'
     if (b == 'main')
         return a;
     def z = a.replaceFirst(Pattern.compile('-g.*$'),'')
@@ -67,7 +71,7 @@ def getRevision() {
 }
 
 def getBranch() {
-    def x = "git branch --show-current".execute().text.trim()
+    def x = run("git branch --show-current")
     return x == '' ? 'main' : x
 }
 
@@ -106,6 +110,7 @@ processResources {
 compileJava {
     sourceCompatibility = '17'
     targetCompatibility = '17'
+    options.compilerArgs << "-Xlint:unchecked"
 }
 
 
