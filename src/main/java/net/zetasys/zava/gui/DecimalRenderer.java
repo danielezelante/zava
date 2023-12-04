@@ -28,6 +28,7 @@ import java.math.RoundingMode;
 import java.text.NumberFormat;
 import javax.swing.JLabel;
 import javax.swing.JTable;
+import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 
 /**
@@ -37,12 +38,12 @@ import javax.swing.table.DefaultTableCellRenderer;
 public class DecimalRenderer extends DefaultTableCellRenderer
 {
 
-    final static long serialVersionUID = 1L;
+    static final long serialVersionUID = 1L;
     private static final System.Logger LOG = System.getLogger(MethodHandles.lookup().lookupClass().getPackageName());
 
     final int decdigits;
     final boolean showall;
-    final char decimal_sep;
+    final char decimalSep;
 
     public DecimalRenderer(int decdigits)
     {
@@ -53,7 +54,7 @@ public class DecimalRenderer extends DefaultTableCellRenderer
     {
         this.decdigits = decdigits;
         this.showall = showall;
-        this.decimal_sep = ','; // TODO configurabile
+        this.decimalSep = ','; // TODO configurabile
     }
 
     public String decsepToPoint(String s)
@@ -68,7 +69,7 @@ public class DecimalRenderer extends DefaultTableCellRenderer
                 sb.append(k);
             if (j == 0 && (k == '+' || k == '-'))
                 sb.append(k);
-            if (k == this.decimal_sep)
+            if (k == this.decimalSep)
                 sb.append('.');
         }
 
@@ -138,7 +139,7 @@ public class DecimalRenderer extends DefaultTableCellRenderer
 
     public void apply(JTable table, int[] columns)
     {
-        setHorizontalAlignment(JLabel.RIGHT);
+        setHorizontalAlignment(SwingConstants.RIGHT);
 
         for (int column : columns)
         {

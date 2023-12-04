@@ -44,17 +44,17 @@ public class Epson
         escape('@');
     }
 
-    public void CR() throws IOException
+    public void cr() throws IOException
     {
         s.write(0x0D);
     }
 
-    public void LF() throws IOException
+    public void lf() throws IOException
     {
         s.write(0x0A);
     }
 
-    public void FF() throws IOException
+    public void ff() throws IOException
     {
         s.write(0x0C);
     }
@@ -93,14 +93,14 @@ public class Epson
     public void writeln(String x) throws IOException
     {
         write(x);
-        CR();
-        LF();
+        cr();
+        lf();
     }
 
     public void writeln180(String x, int a180) throws IOException
     {
         write(x);
-        CR();
+        cr();
         advance180(a180);
     }
 
@@ -110,7 +110,7 @@ public class Epson
         write("%-12345X");
     }
 
-    public void uel_escp() throws IOException
+    public void uelESCP() throws IOException
     {
         uel();
         writeln("@PJL COMMENT ESC/P ");
@@ -153,7 +153,7 @@ public class Epson
         s.write(x);
     }
 
-    public void BEL() throws IOException
+    public void bel() throws IOException
     {
         s.write(0x07);
     }

@@ -25,8 +25,8 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.prefs.Preferences;
 import javax.swing.DefaultRowSorter;
-import javax.swing.JLabel;
 import javax.swing.JTable;
+import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableColumnModel;
 
@@ -34,11 +34,11 @@ public class Table
 {
     //private static final System.Logger LOG = System.getLogger(MethodHandles.lookup().lookupClass().getPackageName());
 
-    static public void right(JTable table, int[] ndxa)
+    public static void right(JTable table, int[] ndxa)
     {
         final TableColumnModel cm = table.getColumnModel();
         final DefaultTableCellRenderer x = new DefaultTableCellRenderer();
-        x.setHorizontalAlignment(JLabel.RIGHT);
+        x.setHorizontalAlignment(SwingConstants.RIGHT);
 
         for (int n : ndxa)
             cm.getColumn(n).setCellRenderer(x);
@@ -46,7 +46,7 @@ public class Table
         justifyHeaders(table);
     }
 
-    static public void justifyHeaders(JTable table)
+    public static void justifyHeaders(JTable table)
     {
         /*
         table.getTableHeader().setDefaultRenderer(new DefaultTableCellRenderer()
@@ -74,11 +74,11 @@ public class Table
 
     }
 
-    static public void widths(JTable table, int[] w)
+    public static void widths(JTable table, int[] w)
     {
         final TableColumnModel cm = table.getColumnModel();
         if (w.length != cm.getColumnCount())
-            throw new RuntimeException("column count mismatch");
+            throw new IllegalArgumentException("column count mismatch");
 
         final int tk = cm.getTotalColumnWidth();
         final int tw = Arrays.stream(w).sum();
@@ -87,7 +87,7 @@ public class Table
             cm.getColumn(j).setPreferredWidth(w[j] * tk / tw);
     }
 
-    static public void doNaturalOrder(JTable t, int k)
+    public static void doNaturalOrder(JTable t, int k)
     {
         final var s = (DefaultRowSorter) t.getRowSorter();
         if (s != null)

@@ -20,6 +20,8 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package net.zetasys.zava.db;
 
+import java.lang.System.Logger.Level;
+import java.lang.invoke.MethodHandles;
 import java.math.BigDecimal;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -36,7 +38,8 @@ import org.javamoney.moneta.Money;
  */
 public class Zql
 {
-
+    private static final System.Logger LOG = System.getLogger(MethodHandles.lookup().lookupClass().getPackageName());
+    
     public static String localizesqlstate(final String s)
     {
         if (s == null)
@@ -49,7 +52,7 @@ public class Zql
             return bundle.getString("sqlstate." + s.toUpperCase());
         } catch (java.util.MissingResourceException ex)
         {
-            System.err.println(String.format("TODO localize sql: %s : %s", s, ex.toString()));
+            LOG.log(Level.WARNING, "TODO localize sql: '%s' : %s", s, ex.toString());
         }
         return String.format("SQLSTATE<%s>", s);
 

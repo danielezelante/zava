@@ -33,15 +33,15 @@ public class Accumulator
     private TreeMap<Long, BigDecimal> sums;
 
     private boolean computed = false;
-    private boolean computed_linear = false;
+    private boolean computedLinear = false;
 
-    private BigDecimal min_value;
-    private BigDecimal max_value;
+    private BigDecimal minValue;
+    private BigDecimal maxValue;
 
     private BigDecimal integral;
 
-    private Real linear_m;
-    private Real linear_q;
+    private Real linearM;
+    private Real linearQ;
     final Unit ux;
     final Unit uy;
 
@@ -54,7 +54,7 @@ public class Accumulator
     void invalidate()
     {
         this.computed = false;
-        this.computed_linear = false;
+        this.computedLinear = false;
     }
 
     public void add(long x, BigDecimal value)
@@ -87,8 +87,8 @@ public class Accumulator
             return;
         }
 
-        this.max_value = BigDecimal.ZERO;
-        this.min_value = BigDecimal.ZERO;
+        this.maxValue = BigDecimal.ZERO;
+        this.minValue = BigDecimal.ZERO;
 
         BigDecimal p = BigDecimal.ZERO;
 
@@ -103,10 +103,10 @@ public class Accumulator
 
             p = p.add(e.getValue());
             this.sums.put(e.getKey(), p);
-            if (this.max_value.compareTo(p) < 0)
-                this.max_value = p;
-            if (this.min_value.compareTo(p) > 0)
-                this.min_value = p;
+            if (this.maxValue.compareTo(p) < 0)
+                this.maxValue = p;
+            if (this.minValue.compareTo(p) > 0)
+                this.minValue = p;
 
         }
 
@@ -126,31 +126,31 @@ public class Accumulator
 
     public BigDecimal getIntegral()
     {
-        compute_linear();
+        computeLinear();
         return this.integral;
     }
 
     public Real getM()
     {
-        compute_linear();
-        return this.linear_m;
+        computeLinear();
+        return this.linearM;
     }
 
     public Real getQ()
     {
-        compute_linear();
-        return this.linear_q;
+        computeLinear();
+        return this.linearQ;
     }
 
-    void compute_linear()
+    void computeLinear()
     {
-        if (this.computed_linear)
+        if (this.computedLinear)
             return;
         compute();
         if (!is())
         {
-            this.linear_m = null;
-            this.linear_q = null;
+            this.linearM = null;
+            this.linearQ = null;
             return;
         }
         final SimpleRegression sr = new SimpleRegression(true);
@@ -161,22 +161,22 @@ public class Accumulator
         for (long x = xbase; x <= xlast; ++x)
             sr.addData(x, getsum(x).doubleValue());
 
-        this.linear_m = Real.byVD(sr.getSlope(), sr.getSlopeStdErr(), getUnitM());
-        this.linear_q = Real.byVD(sr.getIntercept(), sr.getInterceptStdErr(), getUnitY());
+        this.linearM = Real.byVD(sr.getSlope(), sr.getSlopeStdErr(), getUnitM());
+        this.linearQ = Real.byVD(sr.getIntercept(), sr.getInterceptStdErr(), getUnitY());
 
-        this.computed_linear = true;
+        this.computedLinear = true;
     }
 
     public BigDecimal getMin()
     {
         compute();
-        return this.min_value;
+        return this.minValue;
     }
 
     public BigDecimal getMax()
     {
         compute();
-        return this.max_value;
+        return this.maxValue;
     }
 
     public Unit getUnitX()

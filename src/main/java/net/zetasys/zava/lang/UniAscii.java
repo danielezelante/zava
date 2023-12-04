@@ -29,7 +29,7 @@ import org.apache.commons.lang3.StringUtils;
 public class UniAscii
 {
 
-    static public String downgrade(String a)
+    public static String downgrade(String a)
     {
         final var x = StringUtils.stripAccents(a);
         final var z = x.length();

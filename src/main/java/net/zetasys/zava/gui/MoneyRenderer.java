@@ -31,6 +31,7 @@ import javax.money.CurrencyUnit;
 import javax.money.MonetaryAmount;
 import javax.swing.JLabel;
 import javax.swing.JTable;
+import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.tuple.Pair;
@@ -43,7 +44,7 @@ import org.javamoney.moneta.format.MonetaryAmountDecimalFormatBuilder;
 public class MoneyRenderer extends DefaultTableCellRenderer
 {
 
-    final static long serialVersionUID = 1L;
+    static final long serialVersionUID = 1L;
     private static final System.Logger LOG = System.getLogger(MethodHandles.lookup().lookupClass().getPackageName());
     static final HashMap<Pair<JTable, Integer>, Object> orgheaders = new HashMap<>();
 
@@ -134,7 +135,7 @@ public class MoneyRenderer extends DefaultTableCellRenderer
 
     public void apply(JTable table, int[] columns)
     {
-        setHorizontalAlignment(JLabel.RIGHT);
+        setHorizontalAlignment(SwingConstants.RIGHT);
 
         for (int column : columns)
         {

@@ -20,21 +20,22 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package net.zetasys.zava.lang;
 
+import java.io.Serializable;
+
 /**
  *
  * @author zeldan
  */
 public class DataException extends Exception
 {
+    protected final Serializable data;
 
-    protected final Object data;
-
-    public DataException(Object data)
+    public DataException(Serializable data)
     {
         this.data = data;
     }
 
-    public Object getData()
+    public Serializable getData()
     {
         return this.data;
     }

@@ -40,27 +40,27 @@ public class Nufe
         return x == null ? x : x.negate();
     }
 
-    static public BigDecimal invert(BigDecimal x)
+    public static BigDecimal invert(BigDecimal x)
     {
         return x == null ? x : BigDecimal.ONE.divide(x);
     }
 
-    static public MonetaryAmount negate(MonetaryAmount x)
+    public static MonetaryAmount negate(MonetaryAmount x)
     {
         return x == null ? x : x.negate();
     }
 
-    static public Money moneyOf(BigDecimal v, CurrencyUnit c)
+    public static Money moneyOf(BigDecimal v, CurrencyUnit c)
     {
         return v == null ? null : Money.of(v, c);
     }
 
-    static public Money moneyOfZ(BigDecimal v, CurrencyUnit c)
+    public static Money moneyOfZ(BigDecimal v, CurrencyUnit c)
     {
         return Money.of(v == null ? BigDecimal.ZERO : v, c);
     }
 
-    static public Money moneyOf(BigDecimal v, String c)
+    public static Money moneyOf(BigDecimal v, String c)
     {
         return v == null ? null : Money.of(v, c);
     }

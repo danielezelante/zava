@@ -111,7 +111,6 @@ public class License
         if (!Arrays.equals(saladigest, saladigestcheck))
             return null;
         return data;
-
     }
 
     public static Long validateKeyLong(final String s, byte[] salt, Permuta pe) throws NoSuchAlgorithmException

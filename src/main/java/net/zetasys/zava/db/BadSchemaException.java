@@ -26,9 +26,9 @@ package net.zetasys.zava.db;
  */
 public class BadSchemaException extends Exception
 {
-    final protected String table;
-    final protected String field;
-    final protected String text;
+    protected final String table;
+    protected final String field;
+    protected final String text;
     
     public BadSchemaException(String table, String field, String text)
     {

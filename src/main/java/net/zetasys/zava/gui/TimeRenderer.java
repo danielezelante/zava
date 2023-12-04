@@ -25,6 +25,7 @@ import java.lang.invoke.MethodHandles;
 import java.text.DateFormat;
 import javax.swing.JLabel;
 import javax.swing.JTable;
+import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 
 /**
@@ -34,7 +35,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 public class TimeRenderer extends DefaultTableCellRenderer
 {
 
-    final static long serialVersionUID = 1;
+    static final long serialVersionUID = 1;
     private static final System.Logger LOG = System.getLogger(MethodHandles.lookup().lookupClass().getPackageName());
 
     final DateFormat df;
@@ -67,7 +68,7 @@ public class TimeRenderer extends DefaultTableCellRenderer
 
     public void apply(JTable table, int[] columns)
     {
-        setHorizontalAlignment(JLabel.LEFT);
+        setHorizontalAlignment(SwingConstants.LEFT);
 
         for (int column : columns)
         {

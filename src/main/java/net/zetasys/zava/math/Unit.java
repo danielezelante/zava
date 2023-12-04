@@ -135,13 +135,13 @@ public class Unit
         return String.format("%s/%s", sn, sd);
     }
 
-    static public class InvalidDomainError extends Error
+    public static class InvalidDomainError extends Error
     {
-
         private static final long serialVersionUID = 1L;
 
         public InvalidDomainError()
         {
+            // nope
         }
     }
 }

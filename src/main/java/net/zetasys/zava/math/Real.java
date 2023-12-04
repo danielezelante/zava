@@ -34,9 +34,9 @@ public class Real
     {
         return new Real(v, d * d, u);
     }
-    final protected double v;
-    final protected double q;
-    final protected Unit u;
+    protected final double v;
+    protected final double q;
+    protected final Unit u;
 
     protected Real(double v, double q, Unit u)
     {

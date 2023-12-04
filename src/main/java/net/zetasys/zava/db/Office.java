@@ -126,10 +126,15 @@ public class Office
                     {
                         cell.setCellValue(ot.toLocalDateTime());
                         cell.setCellStyle(timeStyle);
-                    } else if (o instanceof BigDecimal ot)
+                    } 
+                    else if (o instanceof BigDecimal ot)
+                    {
                         cell.setCellValue(ot.doubleValue());
+                    }
                     else if (o instanceof Double ot)
+                    {
                         cell.setCellValue(ot);
+                    }
                     else if (o instanceof Long ot)
                     {
                         cell.setCellValue(ot);

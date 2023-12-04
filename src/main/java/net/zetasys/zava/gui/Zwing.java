@@ -20,6 +20,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package net.zetasys.zava.gui;
 
+import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
@@ -71,7 +72,7 @@ public class Zwing
             final var xlw = lw * bim.getHeight() > lh * bim.getWidth() ? -lw : lw;
             final var xlh = lw * bim.getHeight() < lh * bim.getWidth() ? -lh : lh;
 
-            label.setIcon(new ImageIcon(bim.getScaledInstance(xlw, xlh, BufferedImage.SCALE_SMOOTH)));
+            label.setIcon(new ImageIcon(bim.getScaledInstance(xlw, xlh, Image.SCALE_SMOOTH)));
         } else
             label.setIcon(null);
     }
@@ -79,19 +80,13 @@ public class Zwing
     public static void autoNatural(final JTextField g)
     {
         g.setHorizontalAlignment(JTextField.RIGHT);
-        SimpleDocumentListener.add(g, e ->
-        {
-            autoNaturalListener(g);
-        });
+        SimpleDocumentListener.add(g, e -> autoNaturalListener(g));
     }
 
     public static void autoInteger(final JTextField g)
     {
         g.setHorizontalAlignment(JTextField.RIGHT);
-        SimpleDocumentListener.add(g, e ->
-        {
-            autoIntegerListener(g);
-        });
+        SimpleDocumentListener.add(g, e -> autoIntegerListener(g));
     }
 
     private static void autoNaturalListener(final JTextField g)
@@ -107,10 +102,7 @@ public class Zwing
         }
         final String y = xb.toString();
         if (!y.equals(x))
-            java.awt.EventQueue.invokeLater(() ->
-            {
-                g.setText(y);
-            });
+            java.awt.EventQueue.invokeLater(() -> g.setText(y));
     }
 
     private static void autoIntegerListener(final JTextField g)
@@ -129,10 +121,7 @@ public class Zwing
         }
         final String y = xb.toString();
         if (!y.equals(x))
-            java.awt.EventQueue.invokeLater(() ->
-            {
-                g.setText(y);
-            });
+            java.awt.EventQueue.invokeLater(() -> g.setText(y));
     }
 
     protected Zwing()
