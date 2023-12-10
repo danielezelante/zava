@@ -29,7 +29,6 @@ import java.text.DecimalFormat;
 import java.util.HashMap;
 import javax.money.CurrencyUnit;
 import javax.money.MonetaryAmount;
-import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -50,6 +49,7 @@ public class MoneyRenderer extends DefaultTableCellRenderer
 
     final CurrencyUnit defCurrency;
     final boolean lastistot;
+    int style = 0;
 
     public MoneyRenderer(CurrencyUnit def, boolean lastistot)
     {
@@ -63,6 +63,12 @@ public class MoneyRenderer extends DefaultTableCellRenderer
         this(def, false);
     }
 
+    public void setFontStyle(int style)
+    {
+       this.style = style;
+    }
+    
+    
     @Override
     public void setValue(Object value)
     {
@@ -125,11 +131,15 @@ public class MoneyRenderer extends DefaultTableCellRenderer
             JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column)
     {
         super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+        
+        final Font f = getFont();
+        int s = f.getStyle() | this.style;
+             
         if (lastistot && row == table.getRowCount() - 1)
-        {
-            final Font f = getFont();
-            setFont(f.deriveFont(f.getStyle() | Font.BOLD));
-        }
+            s |= Font.BOLD;
+            
+        setFont(f.deriveFont(s));
+
         return this;
     }
 

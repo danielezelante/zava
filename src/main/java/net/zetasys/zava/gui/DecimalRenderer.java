@@ -21,12 +21,12 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 package net.zetasys.zava.gui;
 
 import java.awt.Component;
+import java.awt.Font;
 import java.lang.System.Logger.Level;
 import java.lang.invoke.MethodHandles;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.NumberFormat;
-import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -44,6 +44,7 @@ public class DecimalRenderer extends DefaultTableCellRenderer
     final int decdigits;
     final boolean showall;
     final char decimalSep;
+    int style;
 
     public DecimalRenderer(int decdigits)
     {
@@ -55,6 +56,11 @@ public class DecimalRenderer extends DefaultTableCellRenderer
         this.decdigits = decdigits;
         this.showall = showall;
         this.decimalSep = ','; // TODO configurabile
+    }
+    
+    public void setFontStyle(int style)
+    {
+        this.style = style;
     }
 
     public String decsepToPoint(String s)
@@ -134,6 +140,8 @@ public class DecimalRenderer extends DefaultTableCellRenderer
             JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column)
     {
         super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+        final Font f = getFont();           
+        setFont(f.deriveFont(f.getStyle() | this.style));
         return this;
     }
 
