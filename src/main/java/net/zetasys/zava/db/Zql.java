@@ -52,7 +52,7 @@ public class Zql
             return bundle.getString("sqlstate." + s.toUpperCase());
         } catch (java.util.MissingResourceException ex)
         {
-            LOG.log(Level.WARNING, "TODO localize sql: '%s' : %s", s, ex.toString());
+            LOG.log(Level.WARNING, String.format("TODO localize sql: '%s'", s), ex);
         }
         return String.format("SQLSTATE<%s>", s);
 
