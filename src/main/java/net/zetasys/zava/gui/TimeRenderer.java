@@ -23,7 +23,6 @@ package net.zetasys.zava.gui;
 import java.awt.Component;
 import java.lang.invoke.MethodHandles;
 import java.text.DateFormat;
-import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
