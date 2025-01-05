@@ -1,5 +1,5 @@
 /*
-Copyright 2022-2023 Daniele Zelante  <zeldan@zetasys.net>
+Copyright 2022-2025 Daniele Zelante  <zeldan@zetasys.net>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the "Software"), to deal in
@@ -28,7 +28,7 @@ plugins {
     id 'maven-publish'
     id 'com.github.johnrengelman.shadow' version '8.1.1'
     id 'com.github.ben-manes.versions' version '0.51.0'
-    id 'com.github.spotbugs' version '6.0.26'
+    id 'com.github.spotbugs' version '6.0.27'
     id 'pmd'
 }
 
