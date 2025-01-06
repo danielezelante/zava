@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -x
+
 readonly SITE='https://zetasys.net/gitea/api/v1'
 readonly ORGN='zetasys.net'
 readonly REPO='zava'
