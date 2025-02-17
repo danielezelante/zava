@@ -27,19 +27,19 @@ plugins {
     id 'java'
     id 'maven-publish'
     id 'com.github.johnrengelman.shadow' version '8.1.1'
-    id 'com.github.ben-manes.versions' version '0.51.0'
-    id 'com.github.spotbugs' version '6.0.27'
+    id 'com.github.ben-manes.versions' version '0.52.0'
+    id 'com.github.spotbugs' version '6.1.5'
     id 'pmd'
 }
 
 
 dependencies {
-    implementation 'commons-codec:commons-codec:1.17.1'
+    implementation 'commons-codec:commons-codec:1.18.0'
     implementation 'javax.money:money-api:1.1'
     implementation 'org.apache.commons:commons-lang3:3.17.0'
     implementation 'org.apache.commons:commons-math3:3.6.1'
-    implementation 'org.apache.poi:poi:5.3.0'
-    implementation 'org.apache.poi:poi-ooxml:5.3.0'
+    implementation 'org.apache.poi:poi:5.4.0'
+    implementation 'org.apache.poi:poi-ooxml:5.4.0'
     implementation 'org.javamoney.moneta:moneta-core:1.4.4'
 
     testImplementation 'junit:junit:4.13.2'
