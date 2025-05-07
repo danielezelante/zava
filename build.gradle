@@ -126,7 +126,7 @@ publishing {
 	repositories {
 		maven {
 			name = "gitea"
-			url = "https://zetasys.net/gitea/api/packages/zetasys.net/maven"
+			url = "https://gitea.zetasys.net/api/packages/zetasys.net/maven"
 			credentials {
 				username = project.findProperty("gitea.user") ?: System.getenv("USERNAME")
 				password = project.findProperty("gitea.key") ?: System.getenv("TOKEN")

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-readonly SITE='https://zetasys.net/gitea/api/v1'
+readonly SITE='https://gitea.zetasys.net/api/v1'
 readonly ORGN='zetasys.net'
 readonly REPO='zava'
 TOKEN=$(grep '^gitea\.key=' "$HOME/.gradle/gradle.properties" | sed -E 's/.*=//')
