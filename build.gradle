@@ -28,7 +28,7 @@ plugins {
     id 'maven-publish'
     id 'com.github.johnrengelman.shadow' version '8.1.1'
     id 'com.github.ben-manes.versions' version '0.52.0'
-    id 'com.github.spotbugs' version '6.2.0'
+    id 'com.github.spotbugs' version '6.2.2'
     id 'pmd'
 }
 
@@ -36,7 +36,7 @@ plugins {
 dependencies {
     implementation 'commons-codec:commons-codec:1.18.0'
     implementation 'javax.money:money-api:1.1'
-    implementation 'org.apache.commons:commons-lang3:3.17.0'
+    implementation 'org.apache.commons:commons-lang3:3.18.0'
     implementation 'org.apache.commons:commons-math3:3.6.1'
     implementation 'org.apache.poi:poi:5.4.1'
     implementation 'org.apache.poi:poi-ooxml:5.4.1'
