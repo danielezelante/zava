@@ -49,6 +49,11 @@ public class Nufe
     {
         return x == null ? x : x.negate();
     }
+    
+    public static Money negate(Money x)
+    {
+        return x == null ? x : x.negate();
+    }
 
     public static Money moneyOf(BigDecimal v, CurrencyUnit c)
     {
