@@ -153,7 +153,14 @@ public class MoneyRenderer extends DefaultTableCellRenderer
             col.setCellRenderer(this);
             final var key = Pair.of(table, column);
             orgheaders.putIfAbsent(key, col.getHeaderValue().toString());
-            col.setHeaderValue(String.format("%s [%s]", orgheaders.get(key), defCurrency.getCurrencyCode()));
+            final var oh = orgheaders.get(key);
+            if (oh instanceof String ohs)
+            {
+                final var sqp = ohs.lastIndexOf(" [");
+                if (sqp >= 0)
+                    ohs = ohs.substring(0, sqp);
+                col.setHeaderValue(String.format("%s [%s]", ohs, defCurrency.getCurrencyCode()));
+            }
             if (lastistot && table.getRowSorter() != null)
                 throw new IllegalStateException("cannot sort with total");
             Table.doNaturalOrder(table, column);
