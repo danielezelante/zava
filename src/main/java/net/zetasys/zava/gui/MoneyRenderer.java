@@ -142,7 +142,7 @@ public class MoneyRenderer extends DefaultTableCellRenderer
 
         return this;
     }
-
+   
     public void apply(JTable table, int[] columns)
     {
         setHorizontalAlignment(SwingConstants.RIGHT);
@@ -156,10 +156,8 @@ public class MoneyRenderer extends DefaultTableCellRenderer
             final var oh = orgheaders.get(key);
             if (oh instanceof String ohs)
             {
-                final var sqp = ohs.lastIndexOf(" [");
-                if (sqp >= 0)
-                    ohs = ohs.substring(0, sqp);
                 col.setHeaderValue(String.format("%s [%s]", ohs, defCurrency.getCurrencyCode()));
+                table.updateUI();
             }
             if (lastistot && table.getRowSorter() != null)
                 throw new IllegalStateException("cannot sort with total");
@@ -167,4 +165,6 @@ public class MoneyRenderer extends DefaultTableCellRenderer
         }
         Table.justifyHeaders(table);
     }
+    
+    
 }
