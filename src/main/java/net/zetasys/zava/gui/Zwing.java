@@ -23,9 +23,9 @@ package net.zetasys.zava.gui;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowEvent;
-import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
@@ -34,6 +34,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.KeyStroke;
+
 import net.zetasys.zava.lang.DataException;
 
 /**

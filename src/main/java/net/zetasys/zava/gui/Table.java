@@ -24,10 +24,12 @@ import java.awt.Component;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.prefs.Preferences;
+
 import javax.swing.DefaultRowSorter;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
 public class Table
@@ -64,12 +66,12 @@ public class Table
                     {
                         var dtcr = (DefaultTableCellRenderer)cr;
                         lc2.setHorizontalAlignment(dtcr.getHorizontalAlignment());
-                    } 
+                    }
                 }
                 return c2;
             }
             private final JTable dummy = new JTable();
-        });   
+        });
          */
 
     }
@@ -89,9 +91,13 @@ public class Table
 
     public static void doNaturalOrder(JTable t, int k)
     {
-        final var s = (DefaultRowSorter) t.getRowSorter();
-        if (s != null)
+        final var sorter = t.getRowSorter();
+        if (sorter instanceof DefaultRowSorter<?, ?> && t.getModel() instanceof DefaultTableModel)
+        {
+            @SuppressWarnings("unchecked")
+            final var s = (DefaultRowSorter<DefaultTableModel, ?>) sorter;
             s.setComparator(k, Comparator.naturalOrder());
+        }
     }
 
     protected static String getWidthPref(JTable table, Component vparent, int c)
