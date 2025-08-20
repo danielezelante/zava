@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+
+fatal()
+{
+        echo "$1"
+        exit 1
+}
+
+#[[ -n $(git status --porcelain) ]] && fatal 'you should commit before'
+
+SCMVER=$(./scmrev)
+[[ -z "$SCMVER" ]] && fatal 'cannot get local version'
+TAG=$(echo "$SCMVER" | sed -r 's/-g.*//')
+git tag "$TAG" || fatal 'git tag failed'
+if ! ./dobuild ; then
+    git tag --delete "$TAG"
+    fatal 'build failed'
+fi
+if ! git push github ; then 
+    git tag --delete "$TAG"
+    fatal 'push failed'
+fi
+if ! git push github "refs/tags/$TAG" ; then
+    git tag --delete "$TAG"
+    fatal 'push tags failed'
+fi    
+
+if ! tools/release-github.sh "$TAG"; then
+    git push --delete github "$TAG"
+    git tag --delete "$TAG"
+    fatal 'release to gitea failed'
+fi
+
+./gradlew publish || 'package to gitea failed'
+
+#.
