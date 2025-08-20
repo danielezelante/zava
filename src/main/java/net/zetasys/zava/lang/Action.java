@@ -53,6 +53,11 @@ public class Action
         this.tag = tag;
     }
 
+    Object getTag()
+    {
+        return this.tag;
+    }
+    
     public interface Able
     {
 
@@ -77,6 +82,12 @@ public class Action
         {
             Action.this.setTag(tag);
         }
+        
+        public Object getTag()
+        {
+            return Action.this.getTag();
+        }
+
     }
 
 }
