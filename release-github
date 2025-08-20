@@ -31,6 +31,7 @@ if ! tools/release-github.sh "$TAG"; then
     fatal 'release to gitea failed'
 fi
 
-./gradlew publish || 'package to gitea failed'
+# TODO pubblicare su packages github o altro pubblico
+#./gradlew publish || 'package to gitea failed'
 
 #.
